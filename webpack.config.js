@@ -27,8 +27,8 @@ const babelOptions = (...presets) => {
     const opt = {
         presets: [
             '@babel/preset-env'
-        ]
-        //plugins:['@babel/plugin-proposal-class-properties']
+        ],
+        plugins: ['@babel/plugin-proposal-class-properties']
     }
 
     if (presets)
