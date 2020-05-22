@@ -5,29 +5,37 @@ const CODES = {
 
 function createRow(content, rowInfo) {
     return `
-        <div class="row">
-            <div class="row-info">${rowInfo || ''}</div>
+        <div class="row" data-type="resizable">
+            <div class="row-info">
+                ${rowInfo || ''}
+                ${rowInfo ? '<div class="row-resize" ' +
+        '       data-resize="row"></div>' : ''}
+            </div>
             <div class="row-data">
                 ${content}
             </div>
         </div>`
 }
 
-function createColumn(content) {
+function createColumn(content, index) {
     return `
-        <div class="column">${content}</div>`
+        <div class="column" data-type="resizable" data-col="${index}">
+            ${content}
+            <div class="col-resize" data-resize="col"></div>
+        </div>`
 }
 
-function createCell(content = '') {
+function createCell(content = '', index) {
     return `
-        <div class="cell" contenteditable>${content}</div>`
+        <div class="cell" data-col="${index}" contenteditable>${content}</div>`
 }
 
 export function createTable(rowsCount = 15) {
     const rows = []
 
     const columns = new Array(21).fill('')
-        .map((_, index) => createColumn(String.fromCharCode(CODES.A + index)))
+        .map((_, index) =>
+            createColumn(String.fromCharCode(CODES.A + index), index))
         .join('')
 
     const cells = new Array(21).fill('')

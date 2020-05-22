@@ -14,7 +14,8 @@
     "spaced-comment": "off",
     "curly": "off",
     "require-jsdoc": "off",
-    "no-trailing-spaces": "off"
+    "no-trailing-spaces": "off",
+    "no-case-declarations": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }
