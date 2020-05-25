@@ -4,5 +4,6 @@ export const Event = {
     INPUT: 'input',
     MOUSEDOWN: 'mousedown',
     MOUSEMOVE: 'mousemove',
-    MOUSEUP: 'mouseup'
+    MOUSEUP: 'mouseup',
+    KEYDOWN: 'keydown'
 }

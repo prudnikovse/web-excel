@@ -25,9 +25,16 @@ function createColumn(content, index) {
         </div>`
 }
 
-function createCell(content = '', index) {
-    return `
-        <div class="cell" data-col="${index}" contenteditable>${content}</div>`
+function createCell(row) {
+    return function createCell(_, col) {
+        return `
+        <div class="cell" 
+             data-col="${col}" 
+             data-id="${row}:${col}" 
+             data-type="cell"
+            contenteditable>
+        </div>`
+    }
 }
 
 export function createTable(rowsCount = 15) {
@@ -38,13 +45,17 @@ export function createTable(rowsCount = 15) {
             createColumn(String.fromCharCode(CODES.A + index), index))
         .join('')
 
-    const cells = new Array(21).fill('')
-        .map(createCell)
-        .join('')
+    // const cells = new Array(21).fill('')
+    //     .map(createCell)
+    //     .join('')
 
     rows.push(createRow(columns))
 
     for (let i = 0; i < rowsCount; i++) {
+        const cells = new Array(21).fill('')
+            .map(createCell(i))
+            .join('')
+
         rows.push(createRow(cells, i + 1))
     }
 
