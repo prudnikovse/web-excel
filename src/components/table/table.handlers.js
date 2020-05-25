@@ -54,3 +54,7 @@ export function resizeHandler($root, event) {
         })
     }
 }
+
+export function cellClickHandler($root, event) {
+    $root.selection.select($(event.target))
+}
