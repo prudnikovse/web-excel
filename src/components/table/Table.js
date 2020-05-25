@@ -11,9 +11,12 @@ export class Table extends ExcelComponent {
     constructor($root, options) {
         super($root, {
             name: 'Table',
-            listeners: [Event.MOUSEDOWN, Event.KEYDOWN, Event.INPUT],
             ...options
         });
+
+        this.$on(Event.MOUSEDOWN)
+            .$on(Event.KEYDOWN)
+            .$on(Event.INPUT)
     }
 
     init() {

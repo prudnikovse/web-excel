@@ -8,9 +8,11 @@ export class Formula extends ExcelComponent {
     constructor($root, options) {
         super($root, {
             name: 'Formula',
-            listeners: [Event.INPUT, Event.KEYDOWN],
             ...options
         });
+
+        this.$on(Event.INPUT)
+            .$on(Event.KEYDOWN)
     }
 
     toHTML() {
@@ -40,6 +42,5 @@ export class Formula extends ExcelComponent {
 
         this.$subscribe('cell:select', $cell => $formula.text($cell.text()))
         this.$subscribe('cell:input', $cell => $formula.text($cell.text()))
-        //this.$subscribe('cell:click', $cell => $formula.text($cell.text()))
     }
 }

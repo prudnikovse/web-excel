@@ -1,9 +1,11 @@
 //import {$} from '@core/DOM'
-import {DOMListener} from '@core/DOMListener'
+import {DOMListener} from '../hoc/DOMListener'
 
-export class ExcelComponent extends DOMListener {
-    constructor($root, options = {}) {
-        super($root, options.listeners)
+export class ExcelComponent {
+    constructor($root) {
+        this.$root = $root
+        // eslint-disable-next-line new-cap
+        DOMListener(this)
     }
 
     toHTML() {
@@ -11,10 +13,13 @@ export class ExcelComponent extends DOMListener {
     }
 
     init() {
+        // const domListener = createDOMListener()
+        // domListener(this)
+
         //this.addListeners()
     }
 
     dispose() {
-        this.removeListeners()
+        this.disposeDOMListener()
     }
 }
