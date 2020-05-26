@@ -1,20 +1,30 @@
 //import {$} from '@core/DOM'
-import {DOMListener} from '@core/DOMListener'
+import {DOMListener} from '../hoc/DOMListener'
+import {$} from '@core/DOM';
 
-export class ExcelComponent extends DOMListener {
-    constructor($root, options = {}) {
-        super($root, options.listeners)
+export class ExcelComponent {
+    constructor(options) {
+        this.$root = $.create('div', options.className)
+        this.$root.html(this.toHTML())
+        // eslint-disable-next-line new-cap
+        DOMListener(this)
+    }
+
+    createComponent() {
+    }
+
+    init() {
     }
 
     toHTML() {
         return ''
     }
 
-    init() {
-        //this.addListeners()
+    getDOM() {
+        return this.$root
     }
 
     dispose() {
-        this.removeListeners()
+        this.disposeDOMListener()
     }
 }

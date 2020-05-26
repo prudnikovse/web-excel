@@ -8,12 +8,18 @@ import {$} from '@core/DOM'
 export class Table extends ExcelComponent {
     static className = 'excel__table'
 
-    constructor($root, options) {
-        super($root, {
+    constructor(options) {
+        super({
             name: 'Table',
-            listeners: [Event.MOUSEDOWN, Event.KEYDOWN, Event.INPUT],
             ...options
-        });
+        })
+
+        this.$on(Event.MOUSEDOWN)
+            .$on(Event.KEYDOWN)
+            .$on(Event.INPUT)
+    }
+
+    createComponent() {
     }
 
     init() {

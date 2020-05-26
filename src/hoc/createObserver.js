@@ -24,7 +24,7 @@ export function createObserver() {
         subject.$notify = (event, ...args) =>
             subject.observer.notify(event, ...args)
 
-        subject.$dispose = () =>
+        subject.disposeObserver = () =>
             subject.unsubscribers.forEach(unsub => unsub())
 
         return subject
