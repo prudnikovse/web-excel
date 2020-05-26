@@ -1,10 +1,14 @@
 import {$} from '@core/DOM'
 import {createObserver} from '../../hoc/createObserver'
+import {Header} from '../header/Header'
+import {Toolbar} from '../toolbar/Toolbar'
+import {Formula} from '../formula/Formula'
+import {Table} from '../table/Table'
 
 export class Excel {
     constructor(selector, options) {
         this.$root = $(selector)
-        this.components = options.components || []
+        this.components = [Header, Toolbar, Formula, Table]
 
         this.prepare()
     }
@@ -18,10 +22,11 @@ export class Excel {
         const observer = createObserver()
 
         this.components = this.components.map(Component => {
-            const $el = $.create('div', Component.className)
-            const cmp = observer(new Component($el))
-            $el.html(cmp.toHTML())
-            $root.append($el)
+            const cmp = observer(new Component({
+                className: Component.className
+            }))
+            cmp.init()
+            $root.append(cmp.getDOM())
 
             return cmp
         })
@@ -31,8 +36,6 @@ export class Excel {
 
     render() {
         this.$root.append(this.createComponent())
-
-        this.components.forEach(cmp => cmp.init())
     }
 
     dispose() {
